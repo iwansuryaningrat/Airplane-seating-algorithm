@@ -55,4 +55,11 @@ var controller = {
     }
     return array;
   },
+
+  // Comparator for sorting
+  comparator: function (key) {
+    return function (a, b) {
+      return a[key] - b[key];
+    };
+  },
 };

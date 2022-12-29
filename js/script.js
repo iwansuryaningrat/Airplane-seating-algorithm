@@ -137,3 +137,45 @@ var controller = {
     }
   },
 };
+
+var view = {
+  // remove old result
+  clearFromDOM: function (element) {
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    }
+  },
+
+  // Add background image
+  addBackgroundImg: function () {
+    seats.style.background = "url('img/img.png') no-repeat center top";
+    seats.style.backgroundSize = "contain";
+  },
+
+  // Create table with results
+  createTableResults: function (arrInput, arrResult) {
+    for (i = 0; i < arrInput.length; i++) {
+      table = document.createElement("table");
+      table.setAttribute("class", "table" + (i + 1));
+
+      for (j = 0; j < arrInput[i][1]; j++) {
+        tr = document.createElement("tr");
+        tr.setAttribute("class", "tr" + (j + 1));
+        for (z = 0; z < arrResult.length; z++) {
+          if (arrResult[z].block === i + 1 && arrResult[z].column === j + 1) {
+            td = document.createElement("td");
+            td.setAttribute("class", "class" + arrResult[z].classSeat);
+            if (isNaN(arrResult[z].passenger) === false) {
+              td.innerText = arrResult[z].passenger;
+            } else {
+              td.innerText = "";
+            }
+            tr.appendChild(td);
+          }
+        }
+        table.appendChild(tr);
+      }
+      seats.appendChild(table);
+    }
+  },
+};

@@ -62,4 +62,35 @@ var controller = {
       return a[key] - b[key];
     };
   },
+
+  // Check input data for validity
+  isInputValid: function (arrayRowsColumns, que) {
+    // Check input data rows and columns for validity
+    if (arrayRowsColumns.length > 8) {
+      alert("Too many sections with the rows and columns!");
+      document.getElementById("rowsColumns").focus();
+      return false;
+    }
+
+    // Check input data number of array for validity
+    for (i = 0; i < arrayRowsColumns.length; i++) {
+      for (j = 0; j < arrayRowsColumns[i].length; j++) {
+        if (
+          arrayRowsColumns[i][j] < 1 ||
+          Number.isNaN(arrayRowsColumns[i][j])
+        ) {
+          alert("The rows and columns must be more than 0!");
+          document.getElementById("rowsColumns").focus();
+          return false;
+        }
+      }
+    }
+
+    // Check input data number of queue for validity
+    if (que < 1 || que % 1 != 0) {
+      alert("Incorrect input!");
+      document.getElementById("queue").focus();
+      return false;
+    }
+  },
 };

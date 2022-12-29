@@ -120,4 +120,20 @@ var controller = {
       }
     }
   },
+
+  // Assign passengers to seats
+  seatPassengers: function (res, que) {
+    if (res.length < que) {
+      alert(
+        "Only the first " + res.length + " passengers will be able to fly away."
+      );
+      for (i = 0; i < res.length; i++) {
+        res[i].passenger = i + 1;
+      }
+    } else {
+      for (i = 0; i < que; i++) {
+        res[i].passenger = i + 1;
+      }
+    }
+  },
 };

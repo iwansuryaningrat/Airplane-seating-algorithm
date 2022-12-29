@@ -36,4 +36,23 @@ var controller = {
       view.createTableResults(inputArrayRowsColumns, result);
     });
   },
+
+  //get a string from input in the format '[[x,y],[x,y]]' and return an array [[x,y],[x,y]]
+  parseInput: function (string) {
+    string = string.replace(/\s/g, ""); //remove extra spaces
+    string = string.substring(2, string.length - 2); //remove first and last 2 symbol
+
+    let array = string.split("],[").map(function (x) {
+      //transform string to array
+      return x.split(",");
+    });
+
+    for (i = 0; i < array.length; i++) {
+      //replace strings to numbers
+      for (j = 0; j < array[i].length; j++) {
+        array[i][j] = parseInt(array[i][j]);
+      }
+    }
+    return array;
+  },
 };

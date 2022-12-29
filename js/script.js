@@ -179,3 +179,5 @@ var view = {
     }
   },
 };
+
+controller.init();

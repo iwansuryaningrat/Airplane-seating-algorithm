@@ -93,4 +93,31 @@ var controller = {
       return false;
     }
   },
+
+  // Sort seats
+  sortSeat: function (inputArray, resultArr) {
+    for (block = 1; block <= inputArray.length; block++) {
+      for (column = 1; column <= inputArray[block - 1][0]; column++) {
+        for (row = 1; row <= inputArray[block - 1][1]; row++) {
+          if (block === 1 && column === 1 && inputArray[block - 1][0] > 1) {
+            newSeat = new Seat(block, column, row, 2);
+            resultArr.push(newSeat);
+          } else if (
+            block === inputArray.length &&
+            column === inputArray[block - 1][0] &&
+            inputArray[block - 1][0] > 1
+          ) {
+            newSeat = new Seat(block, column, row, 2);
+            resultArr.push(newSeat);
+          } else if (column === 1 || column === inputArray[block - 1][0]) {
+            newSeat = new Seat(block, column, row, 1);
+            resultArr.push(newSeat);
+          } else {
+            newSeat = new Seat(block, column, row, 3);
+            resultArr.push(newSeat);
+          }
+        }
+      }
+    }
+  },
 };
